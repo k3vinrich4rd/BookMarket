@@ -4,6 +4,11 @@ import com.bookmarket.bookMarket.model.CustomerModel
 import com.bookmarket.bookMarket.model.dto.PostCustomerRequestDto
 import com.bookmarket.bookMarket.model.dto.PutCustomerRequestDto
 
+/*
+Função de extensão do conversor:
+Vantagens: Mais liberdade na reutilização das funções
+e mais liberdade para aplicar essas funções
+*/
 
 fun PostCustomerRequestDto.toCustomerModel(): CustomerModel {
     return CustomerModel(name = this.name, email = this.email)

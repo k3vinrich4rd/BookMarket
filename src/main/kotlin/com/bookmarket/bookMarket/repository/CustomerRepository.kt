@@ -4,5 +4,6 @@ import com.bookmarket.bookMarket.model.CustomerModel
 import org.springframework.data.repository.CrudRepository
 
 interface CustomerRepository : CrudRepository<CustomerModel, Int> {
-    fun findByNameContaining(name: String): List<CustomerModel>
+    //Query method:
+    fun findByNameContainingIgnoreCase(name: String): List<CustomerModel>
 }

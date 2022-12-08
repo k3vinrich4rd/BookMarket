@@ -1,4 +1,4 @@
-package com.bookmarket.BookMarket
+package com.bookmarket.bookMarket
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest

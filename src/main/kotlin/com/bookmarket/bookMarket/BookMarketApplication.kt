@@ -1,4 +1,4 @@
-package com.bookmarket.BookMarket
+package com.bookmarket.bookMarket
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

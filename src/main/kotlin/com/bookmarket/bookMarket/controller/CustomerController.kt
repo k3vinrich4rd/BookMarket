@@ -40,7 +40,7 @@ class CustomerController(
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     fun updateCustomer(@PathVariable id: Int, @RequestBody customer: PutCustomerRequestDto) { //Implementação do Dto
-        return customerService.updateCustomer(customer.toCustomerModel(id))
+        customerService.updateCustomer(customer.toCustomerModel(id))
     }
 
 

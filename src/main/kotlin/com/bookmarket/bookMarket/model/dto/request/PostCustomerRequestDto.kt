@@ -1,4 +1,4 @@
-package com.bookmarket.bookMarket.model.dto
+package com.bookmarket.bookMarket.model.dto.request
 
 //Para fazer um dto:
 data class PostCustomerRequestDto(

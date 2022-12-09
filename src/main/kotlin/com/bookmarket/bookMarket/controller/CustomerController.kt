@@ -2,8 +2,8 @@ package com.bookmarket.bookMarket.controller
 
 import com.bookmarket.bookMarket.extension.toCustomerModel
 import com.bookmarket.bookMarket.model.CustomerModel
-import com.bookmarket.bookMarket.model.dto.PostCustomerRequestDto
-import com.bookmarket.bookMarket.model.dto.PutCustomerRequestDto
+import com.bookmarket.bookMarket.model.dto.request.PostCustomerRequestDto
+import com.bookmarket.bookMarket.model.dto.request.PutCustomerRequestDto
 import com.bookmarket.bookMarket.service.CustomerService
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*

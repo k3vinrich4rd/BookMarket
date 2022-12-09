@@ -21,11 +21,11 @@ fun PutCustomerRequestDto.toCustomerModel(id: Int): CustomerModel {
     return CustomerModel(id = id, name = this.name, email = this.email)
 }
 
-fun PostBookRequestDto.toBookModel(customerModel: CustomerModel): BookModel {
+fun PostBookRequestDto.toBookModel(customer: CustomerModel): BookModel {
     return BookModel(
         name = this.name,
         price = this.price,
         status = BookStatus.ACTIVE,
-        customerModel = customerModel
+        customer = customer
     )
 }

@@ -19,10 +19,10 @@ data class BookModel(
 
     @Column(name = "status_book", length = 70, nullable = true)
     @Enumerated(EnumType.STRING) //Texto
-    var status: BookStatus?,
+    var status: BookStatus? = null,
 
     @ManyToOne //Muitos para um
     @JoinColumn(name = "customer_id")
-    var customerModel: CustomerModel? = null
+    var customer: CustomerModel? = null
 
 )

@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("book")
+@RequestMapping("books")
 class BookController(
     val bookService: BookService,
     val customerService: CustomerService
@@ -22,8 +22,8 @@ class BookController(
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     fun createBook(@RequestBody request: PostBookRequestDto) {
-        val readCustomerViaId = customerService.readCustomerViaId(request.customerId)
-        bookService.createBook(request.toBookModel(readCustomerViaId))
+        val customer = customerService.readCustomerViaId(request.customerId)
+        bookService.createBook(request.toBookModel(customer))
 
     }
 }

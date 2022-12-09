@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service
 class BookService(
     val bookRepository: BookRepository //Injeção de dependência
 ) {
-    fun createBook(bookModel: BookModel) {
-        bookRepository.save(bookModel)
+    fun createBook(book: BookModel) {
+        bookRepository.save(book)
     }
 
 }

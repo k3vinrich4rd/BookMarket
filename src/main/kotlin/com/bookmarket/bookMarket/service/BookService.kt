@@ -25,4 +25,16 @@ class BookService(
         return bookRepository.findByStatus(BookStatus.ACTIVE)
     }
 
+
+    fun deleteBook(id: Int) {
+        //Mudando o status de um book através do delete
+        val readBookViaId = readBookViaId(id)
+        readBookViaId.status = BookStatus.ACTIVE
+        bookUpdate(readBookViaId)
+    }
+
+    //Outra forma de se fazer (linha de expressão):
+    fun bookUpdate(book: BookModel) =
+        bookRepository.save(book)
+
 }

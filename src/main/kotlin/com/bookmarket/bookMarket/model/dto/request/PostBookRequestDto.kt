@@ -8,7 +8,7 @@ data class PostBookRequestDto(
     var price: BigDecimal,
 
     @JsonAlias("customer_id") //Para transformar o nome da variável em snake case
-    //Colocando o valor do campo dentro de uma variável
+    //E assim colocando o valor do campo dentro de uma variável
     var customerId: Int
 )
 

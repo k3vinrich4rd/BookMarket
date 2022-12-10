@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface BookRepository : CrudRepository<BookModel, Int> {
+    //Query method:
     fun findByStatus(bookStatus: BookStatus): List<BookModel>
 
 }

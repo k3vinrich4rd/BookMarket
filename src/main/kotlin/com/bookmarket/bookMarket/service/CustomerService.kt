@@ -6,7 +6,8 @@ import org.springframework.stereotype.Service
 
 @Service
 class CustomerService(
-    val customerRepository: CustomerRepository
+    val customerRepository: CustomerRepository, //Injeção de dependência
+    val bookService: BookService
 ) {
     //Save
     fun createCustomer(customer: CustomerModel) {
@@ -40,10 +41,10 @@ class CustomerService(
 
     //Delete
     fun deleteCustomer(id: Int) {
-        if (!customerRepository.existsById(id)) {
-            throw Exception()
-        }
+        val readCustomerViaId = readCustomerViaId(id)
+        bookService.deleteByCustomer(readCustomerViaId)
         customerRepository.deleteById(id)
+
     }
 }
 

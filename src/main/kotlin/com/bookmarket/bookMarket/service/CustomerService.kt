@@ -41,9 +41,10 @@ class CustomerService(
 
     //Delete
     fun deleteCustomer(id: Int) {
-        val readCustomerViaId = readCustomerViaId(id)
-        bookService.deleteByCustomer(readCustomerViaId)
-        customerRepository.deleteById(id)
+        val readCustomerViaId = readCustomerViaId(id)  // Pega o id de customer
+        bookService.deleteByCustomer(readCustomerViaId)  //executa a regra de negócio
+
+        customerRepository.deleteById(id) //Deleta as suas informações
 
     }
 }

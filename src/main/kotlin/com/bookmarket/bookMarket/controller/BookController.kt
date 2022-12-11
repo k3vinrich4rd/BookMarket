@@ -7,6 +7,9 @@ import com.bookmarket.bookMarket.model.dto.request.PutBookRequestDto
 import com.bookmarket.bookMarket.model.dto.response.BookResponse
 import com.bookmarket.bookMarket.service.BookService
 import com.bookmarket.bookMarket.service.CustomerService
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
+import org.springframework.data.web.PageableDefault
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
@@ -33,8 +36,9 @@ class BookController(
     }
 
     @GetMapping
-    fun readBook(): List<BookResponse> {
-        return bookService.readBook().map { it.toBookResponse() }
+    //inserindo paginação
+    fun readBook(@PageableDefault (page = 0 , size = 10) pageable : Pageable): Page<BookResponse> {
+        return bookService.readBook(pageable).map { it.toBookResponse() }
         //Map., itera sobre todos os registros da lista, fazendo a transformação informada na chaves
     }
 
@@ -44,8 +48,8 @@ class BookController(
 
     @GetMapping("/active")
     //localhost:8080/books/active?=active (Pra efetuar a busca)
-    fun findBookActives(): List<BookResponse> =
-        bookService.findByActives().map { it.toBookResponse() }
+    fun findBookActives(@PageableDefault (page = 0 , size = 10) pageable : Pageable): Page<BookResponse> =
+        bookService.findByActives(pageable).map { it.toBookResponse() }
 
 
     /*

@@ -1,6 +1,7 @@
 package com.bookmarket.bookMarket.extension
 
 import com.bookmarket.bookMarket.enums.BookStatus
+import com.bookmarket.bookMarket.enums.CustomerStatus
 import com.bookmarket.bookMarket.model.BookModel
 import com.bookmarket.bookMarket.model.CustomerModel
 import com.bookmarket.bookMarket.model.dto.request.PostBookRequestDto
@@ -15,11 +16,20 @@ e mais liberdade para aplicar essas funções
 */
 
 fun PostCustomerRequestDto.toCustomerModel(): CustomerModel {
-    return CustomerModel(name = this.name, email = this.email)
+    return CustomerModel(
+        name = this.name,
+        email = this.email,
+        status = CustomerStatus.ACTIVE //Setando o status de customer ao ser criado
+    )
 }
 
-fun PutCustomerRequestDto.toCustomerModel(id: Int): CustomerModel {
-    return CustomerModel(id = id, name = this.name, email = this.email)
+fun PutCustomerRequestDto.toCustomerModel(previusValue: CustomerModel): CustomerModel {
+    return CustomerModel(
+        id = previusValue.id, //valor antigo (sem mudança)
+        name = this.name ?: previusValue.name,
+        email = this.email ?: previusValue.email,
+        status = previusValue.status //Valor antigo (sem mudança)
+    )
 }
 
 fun PostBookRequestDto.toBookModel(customer: CustomerModel): BookModel {
@@ -39,7 +49,6 @@ fun PutBookRequestDto.toBookModel(previusValue: BookModel): BookModel {
         price = this.price ?: previusValue.price, //'?:' - Elvis operator
         status = previusValue.status, //Continuarão com os valores antigos
         customer = previusValue.customer //Continuarão com os valores antigos
-
 
 
     )

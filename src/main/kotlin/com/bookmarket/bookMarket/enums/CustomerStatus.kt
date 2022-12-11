@@ -1,2 +1,7 @@
-package com.bookmarket.bookMarket.enums 
+package com.bookmarket.bookMarket.enums
 
+enum class CustomerStatus {
+    ACTIVE,
+    INACTIVE
+
+}

@@ -1,5 +1,6 @@
 package com.bookmarket.bookMarket.model
 
+import com.bookmarket.bookMarket.enums.CustomerStatus
 import javax.persistence.*
 
 @Entity(name = "customer")
@@ -13,6 +14,9 @@ data class CustomerModel(
     var name: String,
 
     @Column(name = "customer_email", length = 70, nullable = true, unique = true)
-    var email: String
+    var email: String,
 
+    @Column(name = "customer_status", length = 70, nullable = true)
+    @Enumerated(EnumType.STRING)
+    var status: CustomerStatus
 )

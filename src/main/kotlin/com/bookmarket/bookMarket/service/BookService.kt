@@ -38,10 +38,12 @@ class BookService(
     fun bookUpdate(book: BookModel) =
         bookRepository.save(book)
 
-    fun deleteByCustomer(readCustomerViaId: CustomerModel) { //Recebendo um customer por parâmetro e seus valores
+    fun deleteByCustomer(readCustomerViaId: CustomerModel) {
+       // Ao pegar o id de um customer que está Inativado, ele deleta o livro relacionado a esse customer
+        //Recebendo um customer por parâmetro e seus valores
         val books = bookRepository.findByCustomer(readCustomerViaId) //Buscando no banco de dados todos os livros pertencentes ao customer
         //E salvando na lista de livros (books)
-        //For para interagir e mudar os status dos livros
+        //For para interagir e mudar os status dos livros de acordo com status do customer
         for (book in books){//iterando pela lista
             //Alterando o status de cada livro desta lista para deletado
             book.status = BookStatus.DELETED

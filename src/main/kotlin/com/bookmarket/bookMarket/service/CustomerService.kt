@@ -1,5 +1,6 @@
 package com.bookmarket.bookMarket.service
 
+import com.bookmarket.bookMarket.enums.CustomerStatus
 import com.bookmarket.bookMarket.model.CustomerModel
 import com.bookmarket.bookMarket.repository.CustomerRepository
 import org.springframework.stereotype.Service
@@ -41,10 +42,10 @@ class CustomerService(
 
     //Delete
     fun deleteCustomer(id: Int) {
-        val readCustomerViaId = readCustomerViaId(id)  // Pega o id de customer
-        bookService.deleteByCustomer(readCustomerViaId)  //executa a regra de negócio
-
-        customerRepository.deleteById(id) //Deleta as suas informações
+        val readCustomerViaId = readCustomerViaId(id)
+        bookService.deleteByCustomer(readCustomerViaId)  //Pega o id de customer
+        readCustomerViaId.status = CustomerStatus.INACTIVE
+        customerRepository.save(readCustomerViaId) //Deleta as suas informações
 
     }
 }

@@ -20,3 +20,4 @@ data class CustomerModel(
     @Enumerated(EnumType.STRING)
     var status: CustomerStatus
 )
+

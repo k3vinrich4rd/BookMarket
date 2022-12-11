@@ -1,6 +1,7 @@
 package com.bookmarket.bookMarket.service
 
 import com.bookmarket.bookMarket.enums.BookStatus
+import com.bookmarket.bookMarket.exception.NotFoundException
 import com.bookmarket.bookMarket.model.BookModel
 import com.bookmarket.bookMarket.model.CustomerModel
 import com.bookmarket.bookMarket.repository.BookRepository
@@ -20,8 +21,9 @@ class BookService(
         return bookRepository.findAll(pageable)
     }
 
-    fun readBookViaId(id: Int): BookModel {
-        return bookRepository.findById(id).orElseThrow()
+    fun readBookViaId(id: Int): BookModel {                            //ML-001 é um erro da aplicação em si
+        return bookRepository.findById(id).orElseThrow { NotFoundException("Book [$id] not exists", "ML-0001") }
+                                                                                     //Argumentos da classe
     }
 
     fun findByActives(pageable: Pageable): Page<BookModel> {
@@ -41,12 +43,13 @@ class BookService(
         bookRepository.save(book)
 
     fun deleteByCustomer(readCustomerViaId: CustomerModel) {
-       // Ao pegar o id de um customer que está Inativado, ele deleta o livro relacionado a esse customer
+        // Ao pegar o id de um customer que está Inativado, ele deleta o livro relacionado a esse customer
         //Recebendo um customer por parâmetro e seus valores
-        val books = bookRepository.findByCustomer(readCustomerViaId) //Buscando no banco de dados todos os livros pertencentes ao customer
+        val books =
+            bookRepository.findByCustomer(readCustomerViaId) //Buscando no banco de dados todos os livros pertencentes ao customer
         //E salvando na lista de livros (books)
         //For para interagir e mudar os status dos livros de acordo com status do customer
-        for (book in books){//iterando pela lista
+        for (book in books) {//iterando pela lista
             //Alterando o status de cada livro desta lista para deletado
             book.status = BookStatus.DELETED
         }

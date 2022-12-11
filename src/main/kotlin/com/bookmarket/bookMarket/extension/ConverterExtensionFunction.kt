@@ -8,6 +8,8 @@ import com.bookmarket.bookMarket.model.dto.request.PostBookRequestDto
 import com.bookmarket.bookMarket.model.dto.request.PostCustomerRequestDto
 import com.bookmarket.bookMarket.model.dto.request.PutBookRequestDto
 import com.bookmarket.bookMarket.model.dto.request.PutCustomerRequestDto
+import com.bookmarket.bookMarket.model.dto.response.BookResponse
+import com.bookmarket.bookMarket.model.dto.response.CustomerResponse
 
 /*
 Função de extensão do conversor:
@@ -44,10 +46,31 @@ fun PostBookRequestDto.toBookModel(customer: CustomerModel): BookModel {
 fun PutBookRequestDto.toBookModel(previusValue: BookModel): BookModel {
     return BookModel(
         id = previusValue.id,
-        name = this.name ?: previusValue.name, // Se this.name for nulo, retorne o valor antigo (previousValue.name) se não pega o valor de name
+        name = this.name
+            ?: previusValue.name, // Se this.name for nulo, retorne o valor antigo (previousValue.name) se não pega o valor de name
         price = this.price ?: previusValue.price, //'?:' - Elvis operator
         status = previusValue.status, //Continuarão com os valores antigos
         customer = previusValue.customer //Continuarão com os valores antigos
+    )
+}
+
+fun CustomerModel.toCustomerResponse(): CustomerResponse {
+    return CustomerResponse(
+        id = this.id,
+        name = this.name,
+        email = this.email,
+        status = this.status
+    )
+
+}
+
+fun BookModel.toBookResponse(): BookResponse {
+    return BookResponse(
+        id = this.id,
+        name = this.name,
+        price = this.price,
+        customer = this.customer,
+        status = this.status
     )
 }
 

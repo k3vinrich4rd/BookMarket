@@ -1,9 +1,10 @@
 package com.bookmarket.bookMarket.controller
 
 import com.bookmarket.bookMarket.extension.toBookModel
-import com.bookmarket.bookMarket.model.BookModel
+import com.bookmarket.bookMarket.extension.toBookResponse
 import com.bookmarket.bookMarket.model.dto.request.PostBookRequestDto
 import com.bookmarket.bookMarket.model.dto.request.PutBookRequestDto
+import com.bookmarket.bookMarket.model.dto.response.BookResponse
 import com.bookmarket.bookMarket.service.BookService
 import com.bookmarket.bookMarket.service.CustomerService
 import org.springframework.http.HttpStatus
@@ -32,18 +33,19 @@ class BookController(
     }
 
     @GetMapping
-    fun readBook(): List<BookModel> {
-        return bookService.readBook()
+    fun readBook(): List<BookResponse> {
+        return bookService.readBook().map { it.toBookResponse() }
+        //Map., itera sobre todos os registros da lista, fazendo a transformação informada na chaves
     }
 
     @GetMapping("/{id}")
-    fun readBookViaId(@PathVariable id: Int): BookModel =
-        bookService.readBookViaId(id)
+    fun readBookViaId(@PathVariable id: Int): BookResponse =
+        bookService.readBookViaId(id).toBookResponse()
 
     @GetMapping("/active")
     //localhost:8080/books/active?=active (Pra efetuar a busca)
-    fun findBookActives(): List<BookModel> =
-        bookService.findByActives()
+    fun findBookActives(): List<BookResponse> =
+        bookService.findByActives().map { it.toBookResponse() }
 
 
     /*
@@ -65,7 +67,6 @@ class BookController(
     @ResponseStatus(HttpStatus.NO_CONTENT)
     fun deleteBook(@PathVariable id: Int) =
         bookService.deleteBook(id)
-
 
 
 }

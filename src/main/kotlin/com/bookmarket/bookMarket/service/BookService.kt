@@ -1,6 +1,7 @@
 package com.bookmarket.bookMarket.service
 
 import com.bookmarket.bookMarket.enums.BookStatus
+import com.bookmarket.bookMarket.enums.Erros
 import com.bookmarket.bookMarket.exception.NotFoundException
 import com.bookmarket.bookMarket.model.BookModel
 import com.bookmarket.bookMarket.model.CustomerModel
@@ -22,8 +23,8 @@ class BookService(
     }
 
     fun readBookViaId(id: Int): BookModel {                            //ML-001 é um erro da aplicação em si
-        return bookRepository.findById(id).orElseThrow { NotFoundException("Book [$id] not exists", "ML-0001") }
-                                                                                     //Argumentos da classe
+        return bookRepository.findById(id).orElseThrow { NotFoundException(Erros.ML101.message.format(id), Erros.ML101.code) }
+        //Argumentos da classe
     }
 
     fun findByActives(pageable: Pageable): Page<BookModel> {

@@ -3,6 +3,6 @@ package com.bookmarket.bookMarket.exception
 //Só é preciso colocar override em métodos que necessário sobrescrever
 
 class NotFoundException(
-    override val message: //Parâmetro
-    String, val errorCode: String) : Exception() { //Parâmetro
+    override val message: String, //Parâmetro
+    val errorCode: String) : Exception() { //Parâmetro
 }

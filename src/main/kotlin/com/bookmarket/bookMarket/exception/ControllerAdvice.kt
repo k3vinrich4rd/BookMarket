@@ -10,10 +10,10 @@ import org.springframework.web.context.request.WebRequest
 @ControllerAdvice
 class ControllerAdvice {
 
-    //Tratamento para valores não encontrados
-    //Aqui conseguimos definir as configurações necessárias para fazer o tratamento de eero
+    //Tratamento para valores não encontrados(404)
+    //Aqui conseguimos definir as configurações necessárias para fazer o tratamento de err
     @ExceptionHandler(NotFoundException::class)
-    fun handleException(ex: NotFoundException, request: WebRequest): ResponseEntity<ErrorResponse> {
+    fun handleNotFoundException(ex: NotFoundException, request: WebRequest): ResponseEntity<ErrorResponse> {
         val error = ErrorResponse(
             HttpStatus.NOT_FOUND.value(),
             ex.message, //Este recurso não existe
@@ -21,6 +21,20 @@ class ControllerAdvice {
             null
         )
         return ResponseEntity(error, HttpStatus.NOT_FOUND)
+
+    }
+
+    //Tratamento para erros de requisição(400)
+    //Aqui conseguimos definir as configurações necessárias para fazer o tratamento de erro
+    @ExceptionHandler(BadRequestException::class)
+    fun handleBadRequestException(ex: BadRequestException, request: WebRequest): ResponseEntity<ErrorResponse> {
+        val error = ErrorResponse(
+            HttpStatus.BAD_REQUEST.value(),
+            ex.message, //Este recurso não existe
+            ex.errorCode,
+            null
+        )
+        return ResponseEntity(error, HttpStatus.BAD_REQUEST)
 
     }
 }

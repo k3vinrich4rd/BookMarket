@@ -1,6 +1,8 @@
 package com.bookmarket.bookMarket.model
 
 import com.bookmarket.bookMarket.enums.BookStatus
+import com.bookmarket.bookMarket.enums.Erros
+import com.bookmarket.bookMarket.exception.BadRequestException
 import java.math.BigDecimal
 import javax.persistence.*
 
@@ -30,7 +32,7 @@ data class BookModel(
             //Verificando se valor da variável é igual a cancelado ou deletado
             //Se for, vai estourar uma exception
             if (field == BookStatus.CANCELED || field == BookStatus.DELETED) {//field =  valor atual do atributo
-                throw Exception("Unable to change a book with status $field ")
+                throw BadRequestException(Erros.ML102.message.format(field), Erros.ML102.code)
             }
             //Se não, vai sobrescrever o valor de field
             field = value
@@ -43,11 +45,12 @@ data class BookModel(
         name: String,
         price: BigDecimal,
         customer: CustomerModel? = null,
-        status: BookStatus?) : this(id, name, price, customer) {
+        status: BookStatus?
+    ) : this(id, name, price, customer) {
         //this invoca o construtor logo acima (da classe padrão)
         this.status = status
 
-     }
+    }
 
 
 }

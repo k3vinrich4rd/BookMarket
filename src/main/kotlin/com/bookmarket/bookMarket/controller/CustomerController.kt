@@ -8,6 +8,7 @@ import com.bookmarket.bookMarket.model.dto.response.CustomerResponse
 import com.bookmarket.bookMarket.service.CustomerService
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
+import javax.validation.Valid
 
 @RestController
 @RequestMapping("customers")
@@ -21,7 +22,7 @@ class CustomerController(
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun createCustomer(@RequestBody customer: PostCustomerRequestDto) {
+    fun createCustomer(@RequestBody @Valid customer: PostCustomerRequestDto) {
         customerService.createCustomer(customer.toCustomerModel())
     }
 

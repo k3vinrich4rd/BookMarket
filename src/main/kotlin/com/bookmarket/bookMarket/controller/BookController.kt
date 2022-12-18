@@ -63,7 +63,7 @@ class BookController(
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    fun updateBook(@PathVariable id: Int, @RequestBody @Valid book: PutBookRequestDto) {
+    fun updateBook(@PathVariable id: Int, @RequestBody book: PutBookRequestDto) {
         val bookSaved = bookService.readBookViaId(id) //vai pegar um registro já salvo
         bookService.bookUpdate(book.toBookModel(bookSaved)) //E vai atualizar esse mesmo registro
     }

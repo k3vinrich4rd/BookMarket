@@ -1,5 +1,6 @@
 package com.bookmarket.bookMarket.model.dto.request
 
+import validation.EmailAvailable
 import javax.validation.constraints.Email
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotEmpty
@@ -11,5 +12,6 @@ data class PostCustomerRequestDto(
     val name: String, //Atributo que está sendo validado
 
     @field: Email(message = "This email is not valid") //Email que esta sendo validado
+    @EmailAvailable
     val email: String //Atributo que está sendo validado
 )

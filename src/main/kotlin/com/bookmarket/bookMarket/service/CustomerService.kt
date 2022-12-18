@@ -31,7 +31,8 @@ class CustomerService(
 
     //FindById com exceção
     fun readCustomerViaId(id: Int): CustomerModel {//optional                     //ML-001 é um erro da aplicação em si
-        return customerRepository.findById(id).orElseThrow { NotFoundException(Erros.ML201.message.format(id), Erros.ML201.code) }
+        return customerRepository.findById(id)
+            .orElseThrow { NotFoundException(Erros.ML201.message.format(id), Erros.ML201.code) }
     }                                                                                //Argumentos da classe
 
     //Save
@@ -50,6 +51,10 @@ class CustomerService(
         readCustomerViaId.status = CustomerStatus.INACTIVE
         customerRepository.save(readCustomerViaId) //Deleta as suas informações
 
+    }
+
+    fun emailAvailable(email: String): Boolean {
+        return !customerRepository.existsByEmail(email)
     }
 }
 

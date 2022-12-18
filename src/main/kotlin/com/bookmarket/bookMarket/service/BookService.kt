@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 
+//Camada de regra de negócio
 @Service
 class BookService(
     val bookRepository: BookRepository //Injeção de dependência
@@ -22,9 +23,9 @@ class BookService(
         return bookRepository.findAll(pageable)
     }
 
-    fun readBookViaId(id: Int): BookModel {                            //ML-001 é um erro da aplicação em si
+    fun readBookViaId(id: Int): BookModel {                          //ML-001 é um erro da aplicação em si e Argumentos da classe
         return bookRepository.findById(id).orElseThrow { NotFoundException(Erros.ML101.message.format(id), Erros.ML101.code) }
-        //Argumentos da classe
+
     }
 
     fun findByActives(pageable: Pageable): Page<BookModel> {

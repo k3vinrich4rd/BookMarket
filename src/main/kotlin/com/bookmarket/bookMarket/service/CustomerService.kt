@@ -7,6 +7,7 @@ import com.bookmarket.bookMarket.model.CustomerModel
 import com.bookmarket.bookMarket.repository.CustomerRepository
 import org.springframework.stereotype.Service
 
+//Camada de regra de negócio
 @Service
 class CustomerService(
     val customerRepository: CustomerRepository, //Injeção de dependência

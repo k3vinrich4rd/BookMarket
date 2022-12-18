@@ -2,6 +2,7 @@ package com.bookmarket.bookMarket.model.dto.response
 
 import com.bookmarket.bookMarket.enums.CustomerStatus
 
+//Resposta cliente
 data class CustomerResponse(
 
     var id: Int? = null,

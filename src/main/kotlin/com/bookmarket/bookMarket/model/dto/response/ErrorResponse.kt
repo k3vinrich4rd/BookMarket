@@ -1,5 +1,6 @@
 package com.bookmarket.bookMarket.model.dto.response
 
+//Resposta de erros
 data class ErrorResponse(
     var httpCode: Int, //Código http do erro
     var message: String, //Mensagem

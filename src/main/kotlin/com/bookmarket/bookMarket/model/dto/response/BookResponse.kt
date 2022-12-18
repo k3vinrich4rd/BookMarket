@@ -3,7 +3,7 @@ package com.bookmarket.bookMarket.model.dto.response
 import com.bookmarket.bookMarket.enums.BookStatus
 import com.bookmarket.bookMarket.model.CustomerModel
 import java.math.BigDecimal
-
+//Resposta livro
 data class BookResponse(
 
     var id: Int? = null,

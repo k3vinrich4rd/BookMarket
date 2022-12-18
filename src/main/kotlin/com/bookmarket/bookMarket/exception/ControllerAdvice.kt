@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.context.request.WebRequest
 
-@ControllerAdvice
+//Controle de avisos
+@ControllerAdvice //Responsável por cuidar de todos os erros que a aplicação retorna
 class ControllerAdvice {
 
     //Tratamento para valores não encontrados(404)
@@ -15,10 +16,10 @@ class ControllerAdvice {
     @ExceptionHandler(NotFoundException::class)
     fun handleNotFoundException(ex: NotFoundException, request: WebRequest): ResponseEntity<ErrorResponse> {
         val error = ErrorResponse(
-            HttpStatus.NOT_FOUND.value(),
+            HttpStatus.NOT_FOUND.value(), //404
             ex.message, //Este recurso não existe
-            ex.errorCode,
-            null
+            ex.errorCode, //Erro interno criado para aplicação
+            null //Campo de erro
         )
         return ResponseEntity(error, HttpStatus.NOT_FOUND)
 
@@ -29,10 +30,10 @@ class ControllerAdvice {
     @ExceptionHandler(BadRequestException::class)
     fun handleBadRequestException(ex: BadRequestException, request: WebRequest): ResponseEntity<ErrorResponse> {
         val error = ErrorResponse(
-            HttpStatus.BAD_REQUEST.value(),
+            HttpStatus.BAD_REQUEST.value(), //400
             ex.message, //Este recurso não existe
-            ex.errorCode,
-            null
+            ex.errorCode, //Erro interno criado para aplicação
+            null //Campo do erro
         )
         return ResponseEntity(error, HttpStatus.BAD_REQUEST)
 

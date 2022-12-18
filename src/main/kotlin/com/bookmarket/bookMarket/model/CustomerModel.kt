@@ -2,7 +2,7 @@ package com.bookmarket.bookMarket.model
 
 import com.bookmarket.bookMarket.enums.CustomerStatus
 import javax.persistence.*
-
+//Modelagem do cliente
 @Entity(name = "customer")
 data class CustomerModel(
 

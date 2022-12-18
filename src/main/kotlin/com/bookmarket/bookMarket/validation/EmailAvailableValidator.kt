@@ -1,4 +1,4 @@
-package validation
+package com.bookmarket.bookMarket.validation
 
 import com.bookmarket.bookMarket.service.CustomerService
 import javax.validation.ConstraintValidator

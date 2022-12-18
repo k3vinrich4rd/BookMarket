@@ -1,6 +1,6 @@
 package com.bookmarket.bookMarket.model.dto.request
 
-import validation.EmailAvailable
+import com.bookmarket.bookMarket.validation.EmailAvailable
 import javax.validation.constraints.Email
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotEmpty

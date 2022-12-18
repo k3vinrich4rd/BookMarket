@@ -1,8 +1,6 @@
 package com.bookmarket.bookMarket.model.dto.request
 
 import java.math.BigDecimal
-import javax.validation.constraints.NotEmpty
-import javax.validation.constraints.NotNull
 
 /*
 /Só foi informado esses dois atributos, porque eu quero

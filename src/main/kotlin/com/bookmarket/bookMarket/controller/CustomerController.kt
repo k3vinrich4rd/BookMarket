@@ -42,7 +42,7 @@ class CustomerController(
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    fun updateCustomer(@PathVariable id: Int, @RequestBody customer: PutCustomerRequestDto) { //Implementação do Dto
+    fun updateCustomer(@PathVariable id: Int, @RequestBody @Valid customer: PutCustomerRequestDto) { //Implementação do Dto
         val customerSaved = customerService.readCustomerViaId(id)
         customerService.updateCustomer(customer.toCustomerModel(customerSaved))
     }

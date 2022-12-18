@@ -30,7 +30,7 @@ class BookController(
     @ResponseStatus(HttpStatus.CREATED) //Resposta da entidade
     //Para pegar o customer e seus valores através do Id
     //E relacionar esses mesmo valores a um book cadastrado no sistema
-    fun createBook(@RequestBody @Valid  request: PostBookRequestDto) {
+    fun createBook(@RequestBody @Valid request: PostBookRequestDto) {
         val customer = customerService.readCustomerViaId(request.customerId)
         bookService.createBook(request.toBookModel(customer))
 
@@ -63,7 +63,7 @@ class BookController(
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    fun updateBook(@PathVariable id: Int, @RequestBody book: PutBookRequestDto) {
+    fun updateBook(@PathVariable id: Int, @RequestBody @Valid book: PutBookRequestDto) {
         val bookSaved = bookService.readBookViaId(id) //vai pegar um registro já salvo
         bookService.bookUpdate(book.toBookModel(bookSaved)) //E vai atualizar esse mesmo registro
     }

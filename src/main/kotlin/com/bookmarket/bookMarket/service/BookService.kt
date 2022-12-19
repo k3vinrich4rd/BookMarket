@@ -24,7 +24,8 @@ class BookService(
     }
 
     fun readBookViaId(id: Int): BookModel {                          //ML-001 é um erro da aplicação em si e Argumentos da classe
-        return bookRepository.findById(id).orElseThrow { NotFoundException(Erros.ML101.message.format(id), Erros.ML101.code) }
+        return bookRepository.findById(id)
+            .orElseThrow { NotFoundException(Erros.ML101.message.format(id), Erros.ML101.code) }
 
     }
 
@@ -57,6 +58,10 @@ class BookService(
         }
         bookRepository.saveAll(books) //Nos permite passar uma lista de livros e assim salvar todos de uma vez
 
+    }
+
+    fun findAllByIds(bookIds: Set<Int>): List<BookModel> {
+        return bookRepository.findAllById(bookIds).toList() //Pegar todos os registros dos (id)'s presentes
     }
 
 }

@@ -29,7 +29,7 @@ data class PurchaseModel(
         joinColumns = [JoinColumn(name = "purchase_id")],//Aqui é onde declaramos a coluna que referência a tabela de compras
         inverseJoinColumns = [JoinColumn(name = "book_id")]
     ) //Para linkar para fazer a compra
-    val books: List<BookModel>,
+    val books: MutableList<BookModel>,
 
     @Column(name = "purchase_electronic_invoice", length = 100, nullable = true)
     val nfe: String? = null, //Nota fiscal eletrônica

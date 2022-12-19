@@ -21,4 +21,8 @@ class PurchaseService(
         // this = quem está disparando o evento
 
     }
+
+    fun update(purchaseModel: PurchaseModel) {
+        purchaserRepository.save(purchaseModel)
+    }
 }

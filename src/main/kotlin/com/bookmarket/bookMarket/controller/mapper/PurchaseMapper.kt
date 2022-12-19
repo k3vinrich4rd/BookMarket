@@ -17,7 +17,7 @@ class PurchaseMapper( //Tira a necessidade de fazer injeções de dependência como
         val books = bookService.findAllByIds(request.bookIds)
         return PurchaseModel(
             customer = customer,
-            books = books,
+            books = books.toMutableList(),
             price = books.sumOf { it.price },//Somar todos os valores de price e colocar na variável
         )
     }

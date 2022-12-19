@@ -15,7 +15,6 @@ class GeneratedNfeLister(
     @Async //Para deixar o evento Assíncrono
     @EventListener
     fun listen(purchaseEvent: PurchaseEvent) { //Toda a vez que disparar um evento esse ponto vai ser chamado
-        println("Gerando nfe")
         val nfe = UUID.randomUUID().toString()
         //Preenchimento do campo nfe através dessa cópia:
         val purchaseModel = purchaseEvent.purchaseModel.copy(nfe = nfe)

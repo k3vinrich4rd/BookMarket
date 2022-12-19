@@ -4,12 +4,14 @@ import com.bookmarket.bookMarket.enums.BookStatus
 import com.bookmarket.bookMarket.enums.CustomerStatus
 import com.bookmarket.bookMarket.model.BookModel
 import com.bookmarket.bookMarket.model.CustomerModel
+import com.bookmarket.bookMarket.model.PurchaseModel
 import com.bookmarket.bookMarket.model.dto.request.PostBookRequestDto
 import com.bookmarket.bookMarket.model.dto.request.PostCustomerRequestDto
 import com.bookmarket.bookMarket.model.dto.request.PutBookRequestDto
 import com.bookmarket.bookMarket.model.dto.request.PutCustomerRequestDto
 import com.bookmarket.bookMarket.model.dto.response.BookResponse
 import com.bookmarket.bookMarket.model.dto.response.CustomerResponse
+import com.bookmarket.bookMarket.model.dto.response.PurchaseResponse
 
 /*
 Função de extensão do conversor:
@@ -71,6 +73,17 @@ fun BookModel.toBookResponse(): BookResponse {
         price = this.price,
         customer = this.customer,
         status = this.status
+    )
+}
+
+fun PurchaseModel.toPurchaseResponse(): PurchaseResponse {
+    return PurchaseResponse(
+        id = this.id,
+        customer = this.customer,
+        books = this.books,
+        nfe = this.nfe,
+        price = this.price,
+        createdAt = this.createdAt
     )
 }
 

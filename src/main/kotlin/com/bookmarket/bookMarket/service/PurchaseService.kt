@@ -1,6 +1,8 @@
 package com.bookmarket.bookMarket.service
 
+import com.bookmarket.bookMarket.enums.Erros
 import com.bookmarket.bookMarket.events.PurchaseEvent
+import com.bookmarket.bookMarket.exception.NotFoundException
 import com.bookmarket.bookMarket.model.PurchaseModel
 import com.bookmarket.bookMarket.repository.PurchaseRepository
 import org.springframework.context.ApplicationEventPublisher
@@ -17,16 +19,19 @@ class PurchaseService(
     @Transactional
     fun create(purchaseModel: PurchaseModel) {
         purchaserRepository.save(purchaseModel)
-
-        //Evento.
-        println("Disparando evento de compra")
         applicationEventPublisher.publishEvent(PurchaseEvent(this, purchaseModel))
-        println("finalizando o processamento")
         // this = quem está disparando o evento
 
     }
 
+    //Para salvar a nfe
     fun update(purchaseModel: PurchaseModel) {
         purchaserRepository.save(purchaseModel)
+    }
+
+
+    fun readPurchaseViaId(id: Int): PurchaseModel {
+        return purchaserRepository.findById(id)
+            .orElseThrow { NotFoundException(Erros.ML301.message.format(id), Erros.ML301.code) }
     }
 }

@@ -20,7 +20,7 @@ data class BookModel(
     var price: BigDecimal,
 
 
-    @ManyToOne //Muitos para um
+    @ManyToOne //Muitos livros para um cliente
     @JoinColumn(name = "customer_id")
     var customer: CustomerModel? = null
 

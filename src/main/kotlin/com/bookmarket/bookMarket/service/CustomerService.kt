@@ -2,6 +2,7 @@ package com.bookmarket.bookMarket.service
 
 import com.bookmarket.bookMarket.enums.CustomerStatus
 import com.bookmarket.bookMarket.enums.Erros
+import com.bookmarket.bookMarket.enums.Profile
 import com.bookmarket.bookMarket.exception.NotFoundException
 import com.bookmarket.bookMarket.model.CustomerModel
 import com.bookmarket.bookMarket.repository.CustomerRepository
@@ -17,7 +18,12 @@ class CustomerService(
 ) {
     //Save
     fun createCustomer(customer: CustomerModel) {
-        customerRepository.save(customer)
+        val customerCopy = customer.copy(
+            //setOf = Conjunto de
+            roles = setOf(Profile.CUSTOMER) //Customer comum
+        ) //Para criar uma cópia (um objeto) e passar informações diferentes
+
+        customerRepository.save(customerCopy)
     }
 
 

@@ -8,19 +8,23 @@ import com.bookmarket.bookMarket.model.CustomerModel
 import com.bookmarket.bookMarket.repository.CustomerRepository
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
+import org.springframework.security.crypto.bcrypt.BCrypt
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
 
 //Camada de regra de negócio
 @Service
 class CustomerService(
     val customerRepository: CustomerRepository, //Injeção de dependência
-    val bookService: BookService
+    val bookService: BookService,
+    private val bCrypt: BCryptPasswordEncoder
 ) {
     //Save
     fun createCustomer(customer: CustomerModel) {
         val customerCopy = customer.copy(
             //setOf = Conjunto de
-            roles = setOf(Profile.CUSTOMER) //Customer comum
+            roles = setOf(Profile.CUSTOMER), //Customer comum
+            password = bCrypt.encode(customer.password) //Para criptografar a senha
         ) //Para criar uma cópia (um objeto) e passar informações diferentes
 
         customerRepository.save(customerCopy)

@@ -3,7 +3,6 @@ package com.bookmarket.bookMarket.model.dto.request
 import com.bookmarket.bookMarket.validation.EmailAvailable
 import javax.validation.constraints.Email
 import javax.validation.constraints.NotBlank
-import javax.validation.constraints.NotEmpty
 
 //Para fazer um dto:
 data class PostCustomerRequestDto(

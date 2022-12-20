@@ -48,7 +48,7 @@ class CustomerController(
         customerService.findByCustomersActives(pageable).map { it.toCustomerResponse() }
 
 
-     @PutMapping("/{id}")
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     fun updateCustomer(
         @PathVariable id: Int,

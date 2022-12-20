@@ -39,7 +39,7 @@ class BookController(
     @GetMapping
     //inserindo paginação
 
-    fun readBook(@PageableDefault (page = 0 , size = 10) pageable : Pageable): Page<BookResponse> {
+    fun readBook(@PageableDefault(page = 0, size = 10) pageable: Pageable): Page<BookResponse> {
         return bookService.readBook(pageable).map { it.toBookResponse() }
         //Map., itera sobre todos os registros da lista, fazendo a transformação informada na chaves
     }
@@ -50,7 +50,7 @@ class BookController(
 
     @GetMapping("/active")
     //localhost:8080/books/active?=active (Pra efetuar a busca)
-    fun findBookActives(@PageableDefault (page = 0 , size = 10) pageable : Pageable): Page<BookResponse> =
+    fun findBookActives(@PageableDefault(page = 0, size = 10) pageable: Pageable): Page<BookResponse> =
         bookService.findByActives(pageable).map { it.toBookResponse() }
 
 

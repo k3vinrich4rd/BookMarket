@@ -5,7 +5,7 @@ import com.bookmarket.bookMarket.service.PurchaseService
 import org.springframework.context.event.EventListener
 import org.springframework.scheduling.annotation.Async
 import org.springframework.stereotype.Component
-import java.util.UUID
+import java.util.*
 
 @Component //Para o spring cuidar dessa classe
 class GeneratedNfeLister(

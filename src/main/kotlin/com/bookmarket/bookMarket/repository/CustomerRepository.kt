@@ -13,7 +13,7 @@ interface CustomerRepository : CrudRepository<CustomerModel, Int> {
     //Query method:
     fun findByNameContainingIgnoreCase(name: String): List<CustomerModel>
     fun existsByEmail(email: String): Boolean
-    fun findByStatus(customerStatus: CustomerStatus , pageable: Pageable): Page<CustomerModel>
+    fun findByStatus(customerStatus: CustomerStatus, pageable: Pageable): Page<CustomerModel>
 
 
 }

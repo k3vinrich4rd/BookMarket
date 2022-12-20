@@ -26,7 +26,7 @@ class SwaggerConfig {
         .paths(PathSelectors.any()) //para selecionar todos os caminhos (any = qualquer)
         .build() //Retorna um docket
 
-            //Para mudar o nome a descrição da documentação
+        //Para mudar o nome a descrição da documentação
         .apiInfo(
             ApiInfoBuilder()
                 .title("Book Market")

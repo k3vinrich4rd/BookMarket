@@ -2,15 +2,7 @@ package com.bookmarket.bookMarket.model
 
 import java.math.BigDecimal
 import java.time.LocalDateTime
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
-import javax.persistence.JoinColumn
-import javax.persistence.JoinTable
-import javax.persistence.ManyToMany
-import javax.persistence.ManyToOne
+import javax.persistence.*
 
 @Entity(name = "purchase")
 data class PurchaseModel(
@@ -25,7 +17,8 @@ data class PurchaseModel(
 
 
     @ManyToMany //Muitas compras para muitos livros
-    @JoinTable(name = "purchase_book",   //Tabela intermediaria que junta livros com as compras
+    @JoinTable(
+        name = "purchase_book",   //Tabela intermediaria que junta livros com as compras
         joinColumns = [JoinColumn(name = "purchase_id")],//Aqui é onde declaramos a coluna que referência a tabela de compras
         inverseJoinColumns = [JoinColumn(name = "book_id")]
     ) //Para linkar para fazer a compra

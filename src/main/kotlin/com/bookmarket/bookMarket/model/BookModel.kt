@@ -5,6 +5,7 @@ import com.bookmarket.bookMarket.enums.Erros
 import com.bookmarket.bookMarket.exception.BadRequestException
 import java.math.BigDecimal
 import javax.persistence.*
+
 //Modelagem do livro
 @Entity(name = "book")
 data class BookModel(

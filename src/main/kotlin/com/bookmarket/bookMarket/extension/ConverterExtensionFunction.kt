@@ -23,7 +23,8 @@ fun PostCustomerRequestDto.toCustomerModel(): CustomerModel {
     return CustomerModel(
         name = this.name,
         email = this.email,
-        status = CustomerStatus.ACTIVE //Setando o status de customer ao ser criado
+        status = CustomerStatus.ACTIVE, //Setando o status de customer ao ser criado
+        password = this.password //Senha do customer (Jwt)
     )
 }
 
@@ -32,7 +33,9 @@ fun PutCustomerRequestDto.toCustomerModel(previusValue: CustomerModel): Customer
         id = previusValue.id, //valor antigo (sem mudança)
         name = this.name ?: previusValue.name,
         email = this.email ?: previusValue.email,
-        status = previusValue.status //Valor antigo (sem mudança)
+        status = previusValue.status, //Valor antigo (sem mudança)
+        password = previusValue.password //Senha do customer (Jwt)
+
     )
 }
 

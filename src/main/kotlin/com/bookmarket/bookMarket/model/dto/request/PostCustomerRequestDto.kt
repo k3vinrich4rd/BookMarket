@@ -12,5 +12,8 @@ data class PostCustomerRequestDto(
 
     @field: Email(message = "This email is not valid") //Email que esta sendo validado
     @EmailAvailable
-    val email: String //Atributo que está sendo validado
+    val email: String, //Atributo que está sendo validado
+
+    @field:NotBlank(message = "The password must be informed")
+    var password: String //Atributo que está sendo validado (Spring security)
 )

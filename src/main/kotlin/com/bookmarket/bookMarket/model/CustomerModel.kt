@@ -19,6 +19,9 @@ data class CustomerModel(
 
     @Column(name = "customer_status", length = 70, nullable = true)
     @Enumerated(EnumType.STRING)
-    var status: CustomerStatus
+    var status: CustomerStatus,
+
+    @Column(name = "password_customer", length = 255, nullable = true)
+    val password: String
 )
 

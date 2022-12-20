@@ -11,9 +11,10 @@ import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 
 //Camada de regra de negócio
+//Private é um modificador de acesso que permite que a classe seja acessada apenas na própria classe
 @Service
 class BookService(
-    val bookRepository: BookRepository //Injeção de dependência
+    private val bookRepository: BookRepository //Injeção de dependência
 ) {
     fun createBook(book: BookModel) {
         bookRepository.save(book)

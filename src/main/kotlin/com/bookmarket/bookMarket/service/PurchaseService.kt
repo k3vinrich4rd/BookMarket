@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 import javax.transaction.Transactional
 
+//Private é um modificador de acesso que permite que a classe seja acessada apenas na própria classe
 @Service
 class PurchaseService(
     private val purchaserRepository: PurchaseRepository,

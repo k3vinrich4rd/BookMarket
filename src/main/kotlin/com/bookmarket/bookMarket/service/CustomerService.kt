@@ -15,8 +15,8 @@ import org.springframework.stereotype.Service
 //Camada de regra de negócio
 @Service
 class CustomerService(
-    val customerRepository: CustomerRepository, //Injeção de dependência
-    val bookService: BookService,
+    private val customerRepository: CustomerRepository, //Injeção de dependência
+    private val bookService: BookService,
     private val bCrypt: BCryptPasswordEncoder
 ) {
     //Save

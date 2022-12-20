@@ -14,11 +14,12 @@ import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
 
+//Private é um modificador de acesso que permite que a classe seja acessada apenas na própria classe
 @RestController
 @RequestMapping("books")
 class BookController(
-    val bookService: BookService, //Injeção de dependência
-    val customerService: CustomerService //Injeção de dependência
+    private val bookService: BookService, //Injeção de dependência
+    private val customerService: CustomerService //Injeção de dependência
 ) {
 
     /*Explicação:

@@ -5,6 +5,8 @@ import com.bookmarket.bookMarket.enums.Erros
 import com.bookmarket.bookMarket.exception.NotFoundException
 import com.bookmarket.bookMarket.model.CustomerModel
 import com.bookmarket.bookMarket.repository.CustomerRepository
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 
 //Camada de regra de negócio
@@ -55,6 +57,12 @@ class CustomerService(
 
     fun emailAvailable(email: String): Boolean {
         return !customerRepository.existsByEmail(email)
+    }
+
+    fun findByCustomersActives(pageable: Pageable): Page<CustomerModel> {
+        return customerRepository.findByStatus(CustomerStatus.ACTIVE, pageable)
+
+
     }
 }
 

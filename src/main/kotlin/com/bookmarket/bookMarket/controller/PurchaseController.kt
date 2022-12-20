@@ -5,6 +5,9 @@ import com.bookmarket.bookMarket.extension.toPurchaseResponse
 import com.bookmarket.bookMarket.model.dto.request.PostPurchaseRequestDto
 import com.bookmarket.bookMarket.model.dto.response.PurchaseResponse
 import com.bookmarket.bookMarket.service.PurchaseService
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
+import org.springframework.data.web.PageableDefault
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -30,9 +33,17 @@ class PurchaseController(
 
     }
 
+    @GetMapping
+    //inserindo paginação
+    //localhost:8080/purchase?size=2&page=3 (para efetuar a busca)
+    fun readPurchase(@PageableDefault(page = 0, size = 10) pageable: Pageable): Page<PurchaseResponse> {
+        return purchaseService.readPurchase(pageable).map { it.toPurchaseResponse() }
+    }
+
     @GetMapping("/{id}")
-    fun readPurchaseViaId(@PathVariable id : Int) : PurchaseResponse {
+    fun readPurchaseViaId(@PathVariable id: Int): PurchaseResponse {
         return purchaseService.readPurchaseViaId(id).toPurchaseResponse()
     }
+
 
 }

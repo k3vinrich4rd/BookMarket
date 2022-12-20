@@ -6,6 +6,8 @@ import com.bookmarket.bookMarket.exception.NotFoundException
 import com.bookmarket.bookMarket.model.PurchaseModel
 import com.bookmarket.bookMarket.repository.PurchaseRepository
 import org.springframework.context.ApplicationEventPublisher
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 import javax.transaction.Transactional
 
@@ -29,9 +31,14 @@ class PurchaseService(
         purchaserRepository.save(purchaseModel)
     }
 
+    fun readPurchase(pageable: Pageable): Page<PurchaseModel> {
+        return purchaserRepository.findAll(pageable)
+    }
 
     fun readPurchaseViaId(id: Int): PurchaseModel {
         return purchaserRepository.findById(id)
             .orElseThrow { NotFoundException(Erros.ML301.message.format(id), Erros.ML301.code) }
     }
+
+
 }

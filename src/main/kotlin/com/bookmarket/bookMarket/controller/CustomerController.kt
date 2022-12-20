@@ -6,6 +6,9 @@ import com.bookmarket.bookMarket.model.dto.request.PostCustomerRequestDto
 import com.bookmarket.bookMarket.model.dto.request.PutCustomerRequestDto
 import com.bookmarket.bookMarket.model.dto.response.CustomerResponse
 import com.bookmarket.bookMarket.service.CustomerService
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
+import org.springframework.data.web.PageableDefault
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
@@ -40,9 +43,17 @@ class CustomerController(
 
     }
 
-    @PutMapping("/{id}")
+    @GetMapping("/actives")
+    fun findCustomerActives(@PageableDefault(page = 0, size = 10) pageable: Pageable): Page<CustomerResponse> =
+        customerService.findByCustomersActives(pageable).map { it.toCustomerResponse() }
+
+
+     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    fun updateCustomer(@PathVariable id: Int, @RequestBody @Valid customer: PutCustomerRequestDto) { //Implementação do Dto
+    fun updateCustomer(
+        @PathVariable id: Int,
+        @RequestBody @Valid customer: PutCustomerRequestDto
+    ) { //Implementação do Dto
         val customerSaved = customerService.readCustomerViaId(id)
         customerService.updateCustomer(customer.toCustomerModel(customerSaved))
     }
